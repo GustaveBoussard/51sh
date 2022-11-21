@@ -25,8 +25,11 @@ fn main() {
                 }
             },
             command => {
-                let mut child = Command::new(command).args(args).spawn().unwrap();
-                child.wait().ok();
+                let child = Command::new(command).args(args).spawn();
+                match child {
+                    Ok(mut child) => { child.wait().ok(); },
+                    Err(e) => eprintln!("{}", e),
+                };
             }
         }
     }
