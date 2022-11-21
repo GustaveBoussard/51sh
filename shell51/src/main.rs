@@ -6,7 +6,7 @@ use std::process::Command;
 fn main() {
 
     loop {
-        print!(">");
+        print!("51sh >");
         stdout().flush().ok();
 
         let mut input = String::new();
