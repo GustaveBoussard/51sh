@@ -6,6 +6,7 @@ use std::process::Command;
 
 fn main() {
 
+    let mut old_dir = env::current_dir().unwrap().into_os_string().into_string().unwrap();
     loop {
         print!("51sh > ");
         stdout().flush().ok();
@@ -20,8 +21,18 @@ fn main() {
         match command {
             "cd" => {
                 let dir = args.peekable().peek().map_or("/", |x| *x);
-                if let Err(e) = env::set_current_dir(&dir) {
-                    eprintln!("{}", e);
+                match dir {
+                    "-" => {
+                        if let Err(e) = env::set_current_dir(&old_dir) {
+                            eprintln!("{}", e);
+                        }
+                    },
+                    dir => {
+                        old_dir = dir.to_string();
+                        if let Err(e) = env::set_current_dir(&dir) {
+                            eprintln!("{}", e);
+                        }
+                    }
                 }
             },
             command => {
