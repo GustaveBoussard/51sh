@@ -1,3 +1,3 @@
 # 51sh
 Small Rust operating system.
-Based on Philipp Oppermann's blog.
+Based on Josh McGuigan
