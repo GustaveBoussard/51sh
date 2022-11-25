@@ -1,3 +1,3 @@
 # 51sh
-Small Rust operating system.
+Small Rust shell.
 Based on Josh McGuigan's tutorial
